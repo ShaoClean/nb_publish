@@ -17,6 +17,6 @@ export class ConnectService {
 
     async receiveConnectRequest(body: SendConnectRequestDTO) {
         console.log(body);
-        return 'receiveConnectRequest successfully.';
+        return body;
     }
 }

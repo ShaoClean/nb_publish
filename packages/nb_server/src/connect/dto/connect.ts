@@ -13,4 +13,11 @@ export class SendConnectRequestDTO {
     })
     @IsNumber()
     port: number;
+
+    @ApiProperty({
+        type: 'string',
+        required: false,
+    })
+    @IsString()
+    username: string;
 }
