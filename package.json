@@ -1,0 +1,14 @@
+{
+  "name": "nb_publish",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "server": "npm start -w ./packages/nb_server"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "keywords": [],
+  "author": "clean",
+  "license": "ISC"
+}
