@@ -10,12 +10,14 @@ export class ConnectController {
     @Post('send')
     @ApiOperation({ description: '发送连接请求' })
     @UsePipes(new ValidationPipe())
-    async sendConnectRequest(@Param() body: SendConnectRequestDTO): Promise<any> {
+    async sendConnectRequest(@Body() body: SendConnectRequestDTO) {
         return await this.connectService.sendConnectRequest(body);
     }
 
     @Post('receive')
-    async receiveConnectRequest(@Body() body: any): Promise<any> {
+    @ApiOperation({ description: '接收连接请求' })
+    @UsePipes(new ValidationPipe())
+    async receiveConnectRequest(@Body() body: SendConnectRequestDTO) {
         return await this.connectService.receiveConnectRequest(body);
     }
 }
