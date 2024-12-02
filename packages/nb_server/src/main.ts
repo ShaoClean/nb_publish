@@ -9,7 +9,7 @@ async function bootstrap() {
     const config = new DocumentBuilder().setTitle('Nb Publish API').setDescription('API documentation for the Nb Publish').setVersion('1.0').build();
     const document = SwaggerModule.createDocument(app, config);
 
-    SwaggerModule.setup('api', app, document);
+    SwaggerModule.setup(process.env.NB_SERVER_API_PREFIX, app, document);
 
     const httpAdapter = app.get(HttpAdapterHost);
     app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
