@@ -14,6 +14,7 @@ async function bootstrap() {
     const httpAdapter = app.get(HttpAdapterHost);
     app.useGlobalFilters(new AllExceptionsFilter(httpAdapter));
     app.useGlobalInterceptors(new TransformInterceptor());
+    console.log('app run at port:', process.env.NB_SERVER_PORT);
     await app.listen(process.env.NB_SERVER_PORT);
 }
 bootstrap();

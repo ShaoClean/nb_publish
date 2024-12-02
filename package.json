@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "server": "npm start -w ./packages/nb_server"
+    "server": "npm start -w ./packages/nb_server",
+    "server:test": "cross-env NB_SERVER_PORT=4000 npm start -w ./packages/nb_server"
   },
   "workspaces": [
     "packages/*"
   ],
   "keywords": [],
   "author": "clean",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "cross-env": "^7.0.3"
+  }
 }
