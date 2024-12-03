@@ -70,10 +70,10 @@ const describeReturnType = () => {
 
     switch(config.httpClientType) {
         case HTTP_CLIENT.AXIOS: {
-          return `Promise<AxiosResponse<${type}>>`
+          return `Promise<Interceptor<${type}>>`
         }
         default: {
-          return `Promise<HttpResponse<${type}, ${errorType}>`
+          return `Promise<Interceptor<${type}, ${errorType}>`
         }
     }
 }

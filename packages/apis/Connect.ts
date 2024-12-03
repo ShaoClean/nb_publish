@@ -15,11 +15,12 @@ export class Connect<SecurityDataType = unknown> {
      * @request POST:/connect/send
      */
     connectControllerSendConnectRequest = (data: SendConnectRequestDTO, params: RequestParams = {}) =>
-        this.http.request<void, any>({
+        this.http.request<SendConnectRequestDTO, any>({
             path: `/connect/send`,
             method: 'POST',
             body: data,
             type: ContentType.Json,
+            format: 'json',
             ...params,
         });
 
@@ -31,11 +32,12 @@ export class Connect<SecurityDataType = unknown> {
      * @request POST:/connect/receive
      */
     connectControllerReceiveConnectRequest = (data: SendConnectRequestDTO, params: RequestParams = {}) =>
-        this.http.request<void, any>({
+        this.http.request<SendConnectRequestDTO, any>({
             path: `/connect/receive`,
             method: 'POST',
             body: data,
             type: ContentType.Json,
+            format: 'json',
             ...params,
         });
 }

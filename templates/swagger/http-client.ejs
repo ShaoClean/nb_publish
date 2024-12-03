@@ -124,7 +124,7 @@ export type QueryParamsType = Record<string | number, any>;
                 <% if (config.unwrapResponseData) { %>
                     }: FullRequestParams): Promise<T> => {
                     <% } else { %>
-                        }: FullRequestParams): Promise<AxiosResponse<T>> => {
+                        }: FullRequestParams): Promise<Interceptor<T>> => {
                         <% } %>
                         const secureParams = ((typeof secure === 'boolean' ? secure : this.secure) && this.securityWorker && (await this.securityWorker(this.securityData))) || {};
                         const requestParams = this.mergeRequestParams(params, secureParams);

@@ -6,7 +6,7 @@ import { SendConnectRequestDTO } from './dto/connect';
 export class ConnectService {
     constructor(private httpService: HttpService) {}
 
-    async sendConnectRequest(params: SendConnectRequestDTO) {
+    async sendConnectRequest(params: SendConnectRequestDTO): Promise<SendConnectRequestDTO> {
         const hostname = params.hostname;
         const port = params.port;
         const url = `http://${hostname}:${port}/connect/receive`;

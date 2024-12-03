@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosRequestConfig, AxiosResponse, HeadersDefaults, ResponseType } from 'axios';
+import type { AxiosInstance, AxiosRequestConfig, HeadersDefaults, ResponseType } from 'axios';
 import axios from 'axios';
 
 export type QueryParamsType = Record<string | number, any>;
@@ -106,7 +106,7 @@ export class HttpClient<SecurityDataType = unknown> {
         }, new FormData());
     }
 
-    public request = async <T = any, _E = any>({ secure, path, type, query, format, body, ...params }: FullRequestParams): Promise<AxiosResponse<T>> => {
+    public request = async <T = any, _E = any>({ secure, path, type, query, format, body, ...params }: FullRequestParams): Promise<Interceptor<T>> => {
         const secureParams = ((typeof secure === 'boolean' ? secure : this.secure) && this.securityWorker && (await this.securityWorker(this.securityData))) || {};
         const requestParams = this.mergeRequestParams(params, secureParams);
         const responseFormat = format || this.format || undefined;
