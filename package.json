@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "client": "npm run dev -w ./packages/nb_client",
+    "client:test": "cross-env NODE_ENV=test npm run dev -w ./packages/nb_client",
     "server": "npm start -w ./packages/nb_server",
     "server:test": "cross-env NB_SERVER_PORT=4000 npm start -w ./packages/nb_server",
     "api": "ts-node scripts/swagger.ts"

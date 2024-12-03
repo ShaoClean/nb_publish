@@ -1,5 +1,6 @@
 import dotenv from 'dotenv';
-dotenv.config({ path: `../../.env` });
+const envPath = process.env.NODE_ENV === 'test' ? '../../.env.test' : '../../.env';
+const parsedRes = dotenv.config({ path: envPath });
 import { defineConfig } from 'vite';
 import path from 'node:path';
 import electron from 'vite-plugin-electron/simple';
@@ -41,5 +42,8 @@ export default defineConfig({
             usePolling: true, // 修复HMR热更新失效
         },
         port: Number(process.env.NB_CLIENT_PORT) || 5173,
+    },
+    define: {
+        'process.env': JSON.stringify(parsedRes.parsed),
     },
 });

@@ -40,4 +40,4 @@ export class Connect<SecurityDataType = unknown> {
         });
 }
 
-export default new Connect(new HttpClient({ baseURL: 'http://localhost:9000/api' }));
+export default new Connect(new HttpClient({ baseURL: `http://localhost:${process.env.NB_CLIENT_PORT}/api` }));
