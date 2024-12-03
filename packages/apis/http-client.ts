@@ -45,6 +45,21 @@ export class HttpClient<SecurityDataType = unknown> {
         this.secure = secure;
         this.format = format;
         this.securityWorker = securityWorker;
+        this.instance.interceptors.response.use(
+            response => {
+                const res = response.data;
+                if (!res.success) {
+                    //请求错误的处理代码
+                    console.log('请求出错了');
+                    return Promise.reject(res);
+                }
+                //对响应数据的处理
+                return res;
+            },
+            err => {
+                return Promise.reject(err);
+            },
+        );
     }
 
     public setSecurityData = (data: SecurityDataType | null) => {

@@ -28,5 +28,5 @@ export class <%= apiClassName %><SecurityDataType = unknown><% if (!config.singl
         <%~ includeFile('./procedure-call.ejs', { ...it, route }) %>
     <% } %>
 }
-
-export default new <%= apiClassName %>(new HttpClient({ baseURL: `http://localhost:${process.env.NB_CLIENT_PORT}/api` }));
+const client = new HttpClient({ baseURL: `http://localhost:${process.env.NB_CLIENT_PORT}/api` })
+export default new <%= apiClassName %>(client);

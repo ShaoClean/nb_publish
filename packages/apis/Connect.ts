@@ -39,5 +39,5 @@ export class Connect<SecurityDataType = unknown> {
             ...params,
         });
 }
-
-export default new Connect(new HttpClient({ baseURL: `http://localhost:${process.env.NB_CLIENT_PORT}/api` }));
+const client = new HttpClient({ baseURL: `http://localhost:${process.env.NB_CLIENT_PORT}/api` });
+export default new Connect(client);
