@@ -19,3 +19,14 @@
 - nb_server: 后端服务
 - nb_client: ui界面
 
+
+## usage
+
+1. install Dependencies
+
+   ```bash
+   npm ci
+   ```
+   
+2. copy env.* files and rename without example suffix at root directory
+
