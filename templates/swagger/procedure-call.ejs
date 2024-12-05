@@ -78,6 +78,19 @@ const describeReturnType = () => {
     }
 }
 
+const rewriteUsageName = (input) => {
+    if (typeof input !== 'string') {
+        return input
+    }
+
+    const index = input.indexOf('Controller');
+    if (index !== -1) {
+        const result = input.slice(index + 'Controller'.length);
+        return result.charAt(0).toLowerCase() + result.slice(1);
+    }
+    return input;
+}
+
 %>
 /**
 <%~ routeDocs.description %>
@@ -87,7 +100,7 @@ const describeReturnType = () => {
 <%~ routeDocs.lines %>
 
  */
-<%~ route.routeName.usage %> = (<%~ wrapperArgs %>)<%~ config.toJS ? `: ${describeReturnType()}` : "" %> =>
+<%~ rewriteUsageName(route.routeName.usage) %> = (<%~ wrapperArgs %>)<%~ config.toJS ? `: ${describeReturnType()}` : "" %> =>
     <%~ config.singleHttpClient ? 'this.http.request' : 'this.request' %><<%~ type %>, <%~ errorType %>>({
         path: `<%~ path %>`,
         method: '<%~ _.upperCase(method) %>',

@@ -14,7 +14,7 @@ export class Connect<SecurityDataType = unknown> {
      * @name ConnectControllerSendConnectRequest
      * @request POST:/connect/send
      */
-    connectControllerSendConnectRequest = (data: SendConnectRequestDTO, params: RequestParams = {}) =>
+    sendConnectRequest = (data: SendConnectRequestDTO, params: RequestParams = {}) =>
         this.http.request<SendConnectRequestDTO, any>({
             path: `/connect/send`,
             method: 'POST',
@@ -31,7 +31,7 @@ export class Connect<SecurityDataType = unknown> {
      * @name ConnectControllerReceiveConnectRequest
      * @request POST:/connect/receive
      */
-    connectControllerReceiveConnectRequest = (data: SendConnectRequestDTO, params: RequestParams = {}) =>
+    receiveConnectRequest = (data: SendConnectRequestDTO, params: RequestParams = {}) =>
         this.http.request<SendConnectRequestDTO, any>({
             path: `/connect/receive`,
             method: 'POST',
