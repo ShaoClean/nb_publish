@@ -1,42 +1,55 @@
 import { useEffect, useState } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/electron-vite.animate.svg';
 import './App.css';
 import connect from 'apis/Connect.ts';
+import { SendConnectRequestDTO } from 'apis/data-contracts';
 
 function App() {
-    const [count, setCount] = useState(0);
+    const [localInfo, setLocalInfo] = useState<SendConnectRequestDTO>({
+        hostname: 'localhost',
+        port: 4000,
+        username: 'clean',
+    });
+    const baseURL = 'http://' + localInfo.hostname + ':' + localInfo.port;
+    const [targetConnectInfo, setTargetConnectInfo] = useState<SendConnectRequestDTO>({ hostname: '', port: 0, username: '' });
 
     const sendConnectRequest = async () => {
-        const res = await connect.connectControllerSendConnectRequest({
-            hostname: 'localhost',
-            port: 4000,
-        });
+        const res = await connect.receiveConnectRequest(
+            {
+                hostname: 'localhost',
+                port: 4000,
+                username: 'clean',
+            },
+            {
+                baseURL,
+            },
+        );
         console.log(res);
+        if (res.success) {
+            setTargetConnectInfo(res.data);
+        }
     };
-
-    useEffect(() => {
-        sendConnectRequest();
-    }, []);
 
     return (
         <>
-            <div>
-                <a href="https://electron-vite.github.io" target="_blank">
-                    <img src={viteLogo} className="logo" alt="Vite logo" />
-                </a>
-                <a href="https://react.dev" target="_blank">
-                    <img src={reactLogo} className="logo react" alt="React logo" />
-                </a>
-            </div>
-            <h1>Vite + React</h1>
             <div className="card">
-                <button onClick={() => setCount(count => count + 1)}>count is {count}</button>
-                <p>
-                    Edit <code>src/App.tsx</code> and save to test HMR
+                <h1 className="read-the-docs">{localInfo.username}</h1>
+                <p className="read-the-docs">
+                    {localInfo.hostname}:{localInfo.port}
                 </p>
             </div>
-            <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
+            {targetConnectInfo.hostname ? (
+                <>
+                    <h2>连接信息</h2>
+                    <h1 className="read-the-docs">{targetConnectInfo.username}</h1>
+                    <p className="read-the-docs">
+                        {targetConnectInfo.hostname}:{targetConnectInfo.port}
+                    </p>
+                </>
+            ) : null}
+
+            <div className="card">
+                <button onClick={sendConnectRequest}>Connect</button>
+            </div>
         </>
     );
 }

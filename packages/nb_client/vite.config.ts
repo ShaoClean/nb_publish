@@ -30,19 +30,6 @@ export default defineConfig({
                     : {},
         }),
     ],
-    server: {
-        proxy: {
-            '/api': {
-                target: `http://127.0.0.1:${process.env.NB_SERVER_PORT}`,
-                changeOrigin: true,
-                rewrite: path => path.replace(/^\/api/, ''),
-            },
-        },
-        watch: {
-            usePolling: true, // 修复HMR热更新失效
-        },
-        port: Number(process.env.NB_CLIENT_PORT) || 5173,
-    },
     define: {
         'process.env': JSON.stringify(parsedRes.parsed),
     },
