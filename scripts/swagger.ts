@@ -17,8 +17,8 @@ generateApi({
     extractEnums: true,
     enumNamesAsValues: true,
 })
-    .then(({ files, configuration }: any) => {
-        files.forEach(({ fileContent, fileExtension, fileName }: any) => {
+    .then(({ files, configuration }) => {
+        files.forEach(({ fileContent, fileExtension, fileName }) => {
             if (!fileContent) return;
             const fullFileName = fileName + fileExtension;
             const outputPath = path.resolve(process.cwd(), './packages/apis', fullFileName);
